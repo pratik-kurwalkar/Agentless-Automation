@@ -1,0 +1,34 @@
+---
+- name: Uninstalling a package
+  hosts: all 
+  become: yes
+  tasks:
+  - name: Importing Variable File
+    include_vars: /root/ansi/vars/vars.yml
+
+  - name: Task for uninstalling {{ uninstallrpm.package }} package
+    yum:
+      name: '{{ uninstallrpm.package }}'
+      state: absent
+    when: ansible_facts['os_family']  == "RedHat"
+
+  - name: Task for uninstalling {{ uninstalldebian.package }} package
+    yum:
+      name: '{{ uninstalldebian.package }}'
+      state: absent 
+    when: ansible_facts['os_family']  == "Debian"
+
+
+
+
+# - name: Task for Firewall Service
+#     service:
+#       name: firewalld
+#       state: restarted
+#       
+# - name: Adding port {{ install.port }} 
+#   firewalld:
+#     port: '{{ install.port }}'
+#     permanent: true
+#     state: enabled
+

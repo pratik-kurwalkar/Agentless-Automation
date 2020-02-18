@@ -1,0 +1,21 @@
+---
+installrpm:
+  package: httpd
+  service: httpd
+  port: 8080
+
+installdebian:
+  package: apache2
+  service: apache2
+  port: 8080
+
+uninstallrpm:
+  package: httpd
+  service: httpd
+  port: 8080
+
+uninstalldebian:
+  package: apache2
+  service: apache2
+  port: 8080
+

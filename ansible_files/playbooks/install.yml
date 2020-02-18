@@ -1,0 +1,48 @@
+---
+- name: Installing a package
+  hosts: all 
+  become: yes
+  tasks:
+  - name: Importing Variable File
+    include_vars: /home/pkurwalkar/Desktop/Project/AnsibleProject/vars/vars.yml
+
+  - name: Task for installing {{ installrpm.package }} package
+    yum:
+      name: '{{ installrpm.package }}'
+      state: latest
+    when: ansible_facts['os_family']  == "RedHat"
+
+  - name: Task for starting {{ installrpm.service }} service
+    service:
+      name: '{{ installrpm.service }}'
+      state: restarted
+    when: ansible_facts['os_family']  == "RedHat"
+
+  - name: Task for installing {{ installdebian.package }} package
+    yum:
+      name: '{{ installdebian.package }}'
+      state: latest
+    when: ansible_facts['os_family']  == "Debian"
+
+  - name: Task for starting {{ installdebian.service }} service
+    service:
+      name: '{{ installdebian.service }}'
+      state: restarted
+    when: ansible_facts['os_family']  == "Debian"
+
+
+
+
+
+# - name: Task for Firewall Service
+#     service:
+#       name: firewalld
+#       state: restarted
+#       
+# - name: Adding port {{ install.port }} 
+#   firewalld:
+#     port: '{{ install.port }}'
+#     permanent: true
+#     state: enabled
+#
+

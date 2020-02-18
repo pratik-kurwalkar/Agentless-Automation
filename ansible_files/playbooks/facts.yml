@@ -1,0 +1,17 @@
+---
+- name: Fetching system details
+  hosts: all
+  become: yes
+  tasks:
+  - name: Fetching details of system
+    debug:
+      msg: 
+      - "The system details are"
+      - "Hostname is: '{{ ansible_hostname }}'"
+      - "IPv4 address is: '{{ ansible_default_ipv4.address }}'"
+      - "Total Ram is: '{{ ansible_memtotal_mb }}'"
+      - "Architecture is: '{{ ansible_architecture }}'"
+      - "Number of Processor cores are: '{{ ansible_processor_cores }}'"
+      - "Product name is: '{{ ansible_product_version }}'"
+      - "Operating System Family: '{{ ansible_os_family }}'"
+      - "Operarting System: '{{ ansible_distribution }}'"

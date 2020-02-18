@@ -1,0 +1,15 @@
+---
+- name: Playbook to poweroff/reboot 
+  hosts: all
+  become: yes
+  tasks:
+  - name: Importing Variable File
+    include_vars: /home/pkurwalkar/Desktop/Project/AnsibleProject/vars/poweroff-reboot.yml
+  
+  - name: This task will {{ system.state }} only if this system is from Redhat family 
+    command: '{{ system.state }}'
+    when: ansible_facts['os_family']  == "RedHat"
+  
+  - name: This task will {{ system.state }} only if this system is from Debian family 
+    command: '{{ system.state }}'
+    when: 'ansible_os_family  == "Debian"'
