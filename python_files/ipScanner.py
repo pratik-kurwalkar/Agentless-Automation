@@ -12,6 +12,7 @@ text = bfle = ln = alive = hn = brute = False
 narg = ""
 fle = ""
 
+# Help if no options provided
 def help():
     print("nipscan.py [OPTIONS] [IPADDRESSES]")
     print("nipscan.py is a that takes in ip addresses and can do multiple things, including displaying the hostnames of each ip address, as well as filtering out dead ip addresses and only displaying currently alive ips.")
